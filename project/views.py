@@ -4,6 +4,8 @@ from functools import wraps
 from flask import Flask, flash, redirect, render_template, \
         request, session, url_for, g
 
+from forms import AddTaskForm
+
 app = Flask(__name__)
 app.config.from_object('_config')
 
@@ -65,7 +67,7 @@ def tasks():
         closed_tasks=closed_tasks
     )
 
-@app.route('/add', method=['POST'])
+@app.route('/add', methods=['POST'])
 @login_required
 def new_task():
     g.db = connect_db()
